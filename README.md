@@ -10,7 +10,7 @@ Polar field is calculated by taking the average over 15 degrees in northern (165
 
 Source of the dataset:
 
-KITT Peak data: ftp://nispdata.nso.edu/kpvt/synoptic/mag/
+KITT Peak data:  ftp://nispdata.nso.edu/kpvt/synoptic/mag/
 
 MDI data: http://soi.stanford.edu/magnetic/synoptic/carrot/M/
 
