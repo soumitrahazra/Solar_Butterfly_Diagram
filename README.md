@@ -1,2 +1,2 @@
-# Solar_Butterfly_Diagram
-Generating the solar butterfly diagram from observed synoptic maps
+# Solar Butterfly Diagram
+This codes generate the solar butterfly diagram from observed synoptic maps.
