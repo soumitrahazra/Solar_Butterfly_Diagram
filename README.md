@@ -12,12 +12,15 @@ We have both PYTHON and IDL code for the generation of the butterfly diagram.
 
 Running the python code:
 1. In the terminal, type ipython
+   
 2. run the command: %edit final_butterfly_diagram.py
+   
 or simply run the command: python final_butterfly_diagram.py
 It will generate plots for both polar field and the butterfly diagram.
 
 Running the IDL code:
 IDL>> .r bfly_Final.pro
+
 IDL>> bfly
 It will generate a butterfly_diagram.sav file. Sav file contains the information regarding time,
 latitude and the butterfly diagram. IDL code will also generate the plot for the polar field.
