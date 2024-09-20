@@ -8,6 +8,16 @@ Recently GONG synoptic map data is available. We have used GONG synoptic map dat
 
 Polar field is calculated by taking the average over 15 degrees in northern (165 degree to 180 degree colatitude) and southern (0 degree to 15 degree colatitude) hemispheres.
 
+Source of the dataset:
+
+KITT Peak data: ftp://nispdata.nso.edu/kpvt/synoptic/mag/
+
+MDI data: http://soi.stanford.edu/magnetic/synoptic/carrot/M/
+
+SOLIS data: https://solis.nso.edu/0/vsm/vsm_maps.php
+
+GONG data: https://gong2.nso.edu/archive/run_quick_products?dpname=mrnqs_l&drname=83.202.190.79_200625122252&query_result_type=s&menutype=z&calendar=y&long_name=Integral%20synoptic%20map%20FITS%20data
+
 We have both PYTHON and IDL code for the generation of the butterfly diagram.
 
 Running the python code:
