@@ -10,7 +10,9 @@ from scipy.signal import convolve as scipy_convolve
 from scipy.io import readsav
 from astropy.io import fits
 from matplotlib import rc
+import pickle as pickle
 import matplotlib.style
+import math
 import glob
 
 drive='/home/soumitra/Final_Study/Butterfly_diagram_final_plot/Final_Plot/'
@@ -330,10 +332,12 @@ for cs in range(len(file14)):
 #CR 1623 corresonds to year 1975.
 dates=np.zeros((615,180))
 latitude=np.zeros((615, 180))
+#lat=np.zeros((615, 180))
 for i in range(615):
    for j in range(180):
           dates[i,j]=1975.0 + i*(27.27/365.25)
-          latitude[i,j]=-90.0 + j*1.0
+          lat= -1.0 + j*2.0/179.0
+          latitude[i,j]=math.asin(lat)*180/np.pi
 
 #If one wants to cut any particular solar cycle like cycle23.
 # cycle 23 is from 1996.577 to 2009.0455
@@ -342,7 +346,7 @@ latitudes=latitude[1,:]
 bflya=bfly[289:457, :]
 
 #Calculation of polar fields in Northen and Southern Hemisphere.
-#15 pixel corresponds to 15 degree; as resolution along latitude 1 degree.
+#We have only considered last 15 pixels for the calculation of the polar fields.
 date=np.zeros((end_map - 1623 + 1))
 North=np.zeros((end_map - 1623 + 1))
 South=np.zeros((end_map - 1623 + 1))
@@ -380,11 +384,45 @@ ax.axhline(y=-45.0,color='grey',linestyle='dashed')
 a1 = ax.pcolormesh(dates,latitude, bfly,cmap=plt.cm.bwr)
 a1.set_clim(vmin=-bmax, vmax=bmax)
 plt.colorbar(a1, extend='both')
-ax.set_xlabel('Time (Yrs)')
-ax.set_ylabel('Latitude')
+ax.set_xlabel('Time (Yrs)', fontsize=14)
+ax.set_ylabel('Latitude', fontsize=14)
 
 plt.savefig('butterfly_diagram.png',dpi=500)
 plt.show()  
+
+#Saving the output in a binary file
+def save_elements(list_e,name):
+
+    """ Saves a list of variables (can be anything) into file 'name' """
+    """ the file is a binary """
+
+    f=open(name,'wb')
+    for el in list_e:
+        pickle.dump(el,f,1)
+    f.close()
+
+def read_elements(nb_el,name):
+
+    """ Reads nb_el variables (can bea antyhing) from file 'name' """
+
+    f=open(name,'rb')
+    list_el = []
+    for el in range(nb_el):
+        try:
+            list_el.append(pickle.load(f,fix_imports=True,encoding='latin1'))
+        except:
+            list_el.append(pickle.load(f))
+    f.close()
+    return list_el
+
+## Save into file
+
+filename="butterfly" # the .dat is not important
+
+save_elements([dates,latitude,bfly], filename)
+
+# Read file
+#a1,b1,c1 = read_elements(3,filename)
 
 
 
