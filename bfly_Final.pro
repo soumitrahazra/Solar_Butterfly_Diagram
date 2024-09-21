@@ -469,7 +469,8 @@ latitude=fltarr(615,180)
 for i =0, 614L do begin
   for j=0, 179L do begin
 	  dates(i,j) = 1975.0 + i*(27.27/365.25)
-	  latitude(i,j) = -90.0 + j*1.0
+	  lat = -1.0 + j*(2.0/179.0)
+          latitude(i,j)= asin(lat)*180/!pi
 endfor
  endfor
 
@@ -500,14 +501,12 @@ save, dates, latitude, bfly, filename='butterfly_diagram_data.sav'
     !p.thick=3.0
     plot,date,North,$
       title='Field Strength Poleward of 55 Degrees',$
-      xstyle=1,xrange=[1976.,2006.],xtitle='Date',$
+      xstyle=1,xrange=[1976.,2020.],xtitle='Date',$
       ystyle=1,yrange=[-20.,20.],ytitle='Polar Field (Gauss)'
     oplot,date,South,line=2
-    oplot,[1976.,2006.],[0.,0.]
-    oplot,[1998.,2000.],[18.,18.]
-    xyouts,2000.2,17.5,'North'
-    oplot,[1998.,2000.],[16.,16.],line=2
-    xyouts,2000.2,15.5,'South'
+    oplot,[1976.,2020.],[0.,0.]
+    xyouts,2015.2,17.5,'North'
+    xyouts,2015.2,15.5,'South'
   device,/close
 
   stop
